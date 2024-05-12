@@ -1,9 +1,8 @@
 openapi: 3.0.0
 security:
-  - apiKey: []
-  - OAuth2:
-    - write
-    - read
+  - regularSecurity: []
+    OAuth2:
+      - readOnly
 info:
   title: Team API
   description: API to retrieve information about team members
@@ -68,7 +67,7 @@ paths:
                     - name: Irina Kamalova
                       memberType: WCC Director
                       position: Senior Software Engineer
-                      image: assets/images/team/8.jpeg
+                      image: https://womencodingcommunity.com/assets/images/team/8.jpeg
                       network:
                         - name: Linkedin
                           link: https://www.linkedin.com/in/irina-kamalova/
@@ -77,7 +76,7 @@ paths:
                     - name: Eleonora Belova
                       memberType: WCC Lead
                       position: Test Automation Engineer
-                      image: assets/images/team/7.jpeg
+                      image: https://womencodingcommunity.com/assets/images/team/7.jpeg
                       network:
                         - name: Linkedin
                           link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
@@ -92,7 +91,11 @@ paths:
                 $ref: '#/components/schemas/401'
 
 components: 
+  
   securitySchemes:
+    regularSecurity:
+      type: http
+      scheme: basic
     apiKey:
       type: apiKey
       in: header
@@ -100,13 +103,14 @@ components:
     oauth2:
       type: oauth2
       flows:
-        implicit:
-          authorizationUrl: https://womencodingcommunity.com/oauth2/authorize
+        authorizationCode:
           scopes:
-            read: Grants read access
-            write: Grants write access
+            readOnly: read objects in your account
+          authorizationUrl: https://womencodingcommunity.com/oauth/authorize # TBD
+          tokenUrl: https://womencodingcommunity.com/oauth/token # TBD
 
   schemas:
+    
     401: 
       description: Unauthorized
       type: object
@@ -152,6 +156,7 @@ components:
           type: string
           maxLength: 30
           example: Too Many Requests
+
     TeamMember:
       type: object
       required:

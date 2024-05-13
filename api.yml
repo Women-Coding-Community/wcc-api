@@ -8,10 +8,10 @@ info:
   description: API to retrieve information about team members
   version: 1.0.0
 servers:
-  - url: https://api.womencodingcommunity.com/v1
-  - url: http://localhost:8080/v1
+  - url: https://api.womencodingcommunity.com/v1/cms
+  - url: http://localhost:8080/v1.cms
 paths:
-  /team:
+  /teams:
     get:
       summary: Get all team members
       security:
@@ -62,26 +62,30 @@ paths:
                 items:
                   $ref: '#/components/schemas/TeamMember'
               examples:
-                example1:
+                example1: 
                   value:
-                    - name: Irina Kamalova
-                      memberType: WCC Director
-                      position: Senior Software Engineer
-                      image: https://womencodingcommunity.com/assets/images/team/8.jpeg
-                      network:
-                        - name: Linkedin
-                          link: https://www.linkedin.com/in/irina-kamalova/
-                        - name: Medium
-                          link: https://iren-kamalova.medium.com/
-                    - name: Eleonora Belova
-                      memberType: WCC Lead
-                      position: Test Automation Engineer
-                      image: https://womencodingcommunity.com/assets/images/team/7.jpeg
-                      network:
-                        - name: Linkedin
-                          link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
-                        - name: Github
-                          link: https://github.com/nora-weisser/
+                    - title: Meet our team
+                      subtitle: Core Team
+                      description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
+                      members: 
+                        - name: Irina Kamalova
+                          memberType: WCC Director
+                          position: Senior Software Engineer
+                          image: https://womencodingcommunity.com/assets/images/team/8.jpeg
+                          network:
+                            - name: Linkedin
+                              link: https://www.linkedin.com/in/irina-kamalova/
+                            - name: Medium
+                              link: https://iren-kamalova.medium.com/
+                        - name: Eleonora Belova
+                          memberType: WCC Lead
+                          position: Test Automation Engineer
+                          image: https://womencodingcommunity.com/assets/images/team/7.jpeg
+                          network:
+                            - name: Linkedin
+                              link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
+                            - name: Github
+                              link: https://github.com/nora-weisser/
 
         default:
           description: Default
@@ -157,30 +161,61 @@ components:
           maxLength: 30
           example: Too Many Requests
 
+    TeamPage:
+      type: object
+      required:
+        - title
+        - subtitle
+        - description
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          maxLength: 30
+          example: Meet our team
+        subtitle:
+          type: string
+          maxLength: 80
+          example: Core team
+        description:
+          type: string
+          maxLength: 500
+          example: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.
+        members:
+          type: array
+          maxItems: 30
+          items:
+            $ref: '#/components/schemas/TeamMember'
+          
     TeamMember:
       type: object
       required:
         - name
         - position
+        - memberType
+        - image
       additionalProperties: false
       properties:
         name:
           type: string
           maxLength: 30
+          example: Irina Kamalova
         position:
           description: Professional experience
           type: string
-          maxLength: 50
-        MemberType:
+          maxLength: 30
+          example: Senior Software Engineer
+        memberType:
           $ref: '#/components/schemas/MemberType'
         image:
           description: Path of member profile image
           type: string
           maxLength: 100
           pattern: ^(\/?[\w\-.]+\/)*[\w\-.]+\.\w+$
+          example: WCC Director
         network:
           type: array
-          maxItems: 30
+          maxItems: 5
           items:
             $ref: '#/components/schemas/SocialNetwork'
     
@@ -193,9 +228,11 @@ components:
       properties:
         name:
           $ref: '#/components/schemas/SocialNetworkType'
+          example: Linkedin
         link:
           type: string
           pattern: '^(https?|http):\/\/[^\s\/$.?#].[^\s]*$'
+          example: https://www.linkedin.com/in/irina-kamalova
 
 
     SocialNetworkType:

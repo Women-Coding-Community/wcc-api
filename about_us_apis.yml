@@ -4,7 +4,7 @@ security:
     OAuth2:
       - readOnly
 info:
-  title: Team API
+  title: CMS About US Api's
   description: API to retrieve information about team members
   version: 1.0.0
 servers:

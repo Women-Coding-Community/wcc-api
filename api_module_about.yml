@@ -1,0 +1,57 @@
+openapi: 3.0.0
+
+info:
+  title: Session "About" APIs
+  description: API to retrieve information about team members
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost:8080/v1/cms
+
+paths:
+  /teams:
+    get:
+      summary: Get all team members
+      responses:
+        '200':
+          description: List the content of Team's Page
+          content:
+            application/json:
+              schema:
+                $ref: 'schemas/modules.yml#/components/schemas/TeamPage'
+              example:
+                title: Meet our team
+                subtitle: Core Team
+                description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
+                members:
+                  - name: Irina Kamalova
+                    memberType: WCC Director
+                    position: Senior Software Engineer
+                    imagePath: https://womencodingcommunity.com/assets/images/team/8.jpeg
+                    network:
+                      - name: Linkedin
+                        link: https://www.linkedin.com/in/irina-kamalova/
+                      - name: Medium
+                        link: https://iren-kamalova.medium.com/
+                  - name: Eleonora Belova
+                    memberType: WCC Lead
+                    position: Test Automation Engineer
+                    imagePath: https://womencodingcommunity.com/assets/images/team/7.jpeg
+                    network:
+                      - name: Linkedin
+                        link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
+                      - name: Github
+                        link: https://github.com/nora-weisser/
+
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'

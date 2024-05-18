@@ -1,0 +1,24 @@
+components:
+  schemas:
+    SocialNetworkType:
+      type: string
+      enum:
+        - Youtube
+        - Github
+        - LinkedIn
+        - Instagram
+        - Facebook
+        - X
+        - Medium
+        - Slack
+        - Meetup
+
+    MemberType:
+      type: string
+      enum:
+        - WCC Director
+        - WCC Leader
+        - Mentor
+        - Mentee
+        - Volunteer
+        - Member

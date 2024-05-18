@@ -1,0 +1,57 @@
+components:
+  schemas:
+    TeamPage:
+      type: object
+      required:
+        - title
+        - subtitle
+        - description
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          maxLength: 30
+          example: Meet our team
+        subtitle:
+          type: string
+          maxLength: 80
+          example: Core team
+        description:
+          type: string
+          maxLength: 500
+          example: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.
+        members:
+          type: array
+          maxItems: 30
+          items:
+            $ref: '#/components/schemas/TeamMember'
+          
+    TeamMember:
+      type: object
+      required:
+        - name
+        - position
+        - memberType
+        - image
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          maxLength: 30
+          example: Irina Kamalova
+        position:
+          description: Professional experience
+          type: string
+          maxLength: 30
+          example: Senior Software Engineer
+        memberType:
+          type: Object
+          $ref: 'enums.yml#/components/schemas/MemberType'
+        imagePath:
+          type: Object
+          properties:
+            $ref: 'attributes.yml#/components/schemas/attributes/ImagePath'
+        network:
+          type: Object
+          properties:
+            $ref: 'attributes.yml#/components/schemas/attributes/NetworkList'

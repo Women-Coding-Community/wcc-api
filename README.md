@@ -37,6 +37,7 @@ Helpful to check if your API is corrected created and no error exist.
   4. Open one of the API files, for example: [api_module_about.yml](api_module_about.yml)
   5. Go to Path, for example ``/teams:``
   6. Click "Audit" Link above the path you want to test
+  7. Provide IDE Token and proceed further
   7. The Audit Problem view page will show all the problem exist or no error will show in case of everything correct.
 
 ## How to use

@@ -3,8 +3,7 @@ components:
     attributes:
       Link:
         type: string
-        maxLength: 100
-        pattern: '^(https?|http):\/\/[^\s\/$.?#].[^\s]*$'
+        format: uri
         example: https://www.linkedin.com
 
       ImagePath:

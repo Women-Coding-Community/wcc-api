@@ -19,11 +19,23 @@ Use your editor and install the relevant plugging/extension to edit and to see t
 
 ### VSCode
 
-- Install extension [OpenAPI (Swagger) Editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) 
+- Install extension [OpenAPI (Swagger) Editor](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)
+
+- About Swagger Extension
+![](https://github.com/42Crunch/vscode-openapi/raw/HEAD/images/New%20OpenAPI%20file.gif?raw=true)
+
+- How to Preview
+![](assets/vs_swagger_preview.png)
 
 ### IntelliJ 
 
-- [Install Open Api (Swagger) Editor](https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor)
+- [How to install - Open Api (Swagger) Editor](https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor)
+
+- About Swagger Plugin
+![Swagger Plugin](https://plugins.jetbrains.com/files/14837/screenshot_23169.png)
+
+- How to Preview
+![How to Preview](assets/intellij_preview.png)
 
 ### 42Crunch
 
@@ -35,10 +47,10 @@ Helpful to check if your API is corrected created and no error exist.
   2. Go to Token > Create new token
   3. Copy the token and go to you Editor
   4. Open one of the API files, for example: [api_module_about.yml](api_module_about.yml)
-  5. Go to Path, for example ``/teams:``
+  5. Go to Path, for example ``/team:``
   6. Click "Audit" Link above the path you want to test
   7. Provide IDE Token and proceed further
-  7. The Audit Problem view page will show all the problem exist or no error will show in case of everything correct.
+  8. The Audit Problem view page will show all the problem exist or no error will show in case of everything correct.
 
 ## How to use
 
@@ -52,3 +64,39 @@ Helpful to check if your API is corrected created and no error exist.
 ### Check for errors
 
 Follow the steps in listed in [42Crunch setup](#42crunch)
+
+
+## Execute locally with CURL
+
+* Install [jq](https://jqlang.github.io/jq/) on mac:  
+```shell
+$ brew install jq
+$ curl https://wcc-cms.fly.dev/api/cms/v1/team  | jq .
+```
+
+The output should be like this: 
+```json
+{
+  "title": "Meet our team",
+  "subtitle": "Core Team",
+  "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.",
+  "members": [
+    {
+      "fullName": "Irina Kamalova",
+      "position": "Senior Software Engineer",
+      "memberType": "DIRECTOR",
+      "imagePath": "assets/images/team/8.jpeg",
+      "socialNetwork": [
+        {
+          "type": "LINKEDIN",
+          "link": "https://www.linkedin.com/in/irina-kamalova/"
+        },
+        {
+          "type": "MEDIUM",
+          "link": "https://iren-kamalova.medium.com/"
+        }
+      ]
+    }
+  ]
+}
+```

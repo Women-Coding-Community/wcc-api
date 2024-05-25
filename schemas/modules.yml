@@ -29,13 +29,13 @@ components:
     TeamMember:
       type: object
       required:
-        - name
+        - fullName
         - position
         - memberType
-        - image
+        - imagePath
       additionalProperties: false
       properties:
-        name:
+        fullName:
           type: string
           maxLength: 30
           example: Irina Kamalova
@@ -45,13 +45,8 @@ components:
           maxLength: 30
           example: Senior Software Engineer
         memberType:
-          type: Object
           $ref: 'enums.yml#/components/schemas/MemberType'
         imagePath:
-          type: Object
-          properties:
-            $ref: 'attributes.yml#/components/schemas/attributes/ImagePath'
+          $ref: 'attributes.yml#/components/schemas/attributes/ImagePath'
         network:
-          type: Object
-          properties:
-            $ref: 'attributes.yml#/components/schemas/attributes/NetworkList'
+          $ref: 'attributes.yml#/components/schemas/attributes/NetworkList'

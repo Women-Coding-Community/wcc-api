@@ -1,5 +1,4 @@
 components:
-
   responses:
     NotFound:
       description: The specified resource was not found

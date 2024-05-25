@@ -1,7 +1,7 @@
 components:
   schemas:
     SocialNetworkType:
-      type: string
+      name: string
       enum:
         - Youtube
         - Github
@@ -12,13 +12,15 @@ components:
         - Medium
         - Slack
         - Meetup
+        - Unknown
 
     MemberType:
-      type: string
+      name: string
       enum:
-        - WCC Director
-        - WCC Leader
+        - Director
+        - Leader
         - Mentor
         - Mentee
         - Volunteer
         - Member
+        - Speaker

@@ -26,11 +26,11 @@ components:
       SocialNetwork:
         type: object
         required:
-          - name
+          - type
           - link
         additionalProperties: false
         properties:
-          name:
+          type:
             $ref: 'enums.yml#/components/schemas/SocialNetworkType'
             example: Linkedin
           link:

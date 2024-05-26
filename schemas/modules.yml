@@ -11,14 +11,17 @@ components:
         title:
           type: string
           maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
           example: Meet our team
         subtitle:
           type: string
           maxLength: 80
+          pattern: '^[A-Z][a-z ]{0,79}$'
           example: Core team
         description:
           type: string
           maxLength: 500
+          pattern: '^[\w\s.,!?()-]{0,500}$'
           example: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.
         members:
           type: array
@@ -38,15 +41,37 @@ components:
         fullName:
           type: string
           maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
           example: Irina Kamalova
         position:
           description: Professional experience
           type: string
           maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
           example: Senior Software Engineer
         memberType:
           $ref: 'enums.yml#/components/schemas/MemberType'
         imagePath:
-          $ref: 'attributes.yml#/components/schemas/attributes/ImagePath'
+          type: string
+          maxLength: 2000
+          pattern: '^(\/[\w\-\/]+\.(jpg|jpeg|png|gif|bmp))$|^(https?:\/\/[\w\-\.]+(\/[\w\-\/]*)*\.(jpg|jpeg|png|gif|bmp))$'
+          example: https://domain.com/assets/image.jpg
         network:
-          $ref: 'attributes.yml#/components/schemas/attributes/NetworkList'
+          type: array
+          maxItems: 6
+          items:
+            type: object
+            required:
+              - type
+              - link
+            additionalProperties: false
+            properties:
+              type:
+                $ref: 'enums.yml#/components/schemas/SocialNetworkType'
+
+              link:
+                type: string
+                format: uri
+                maxLength: 200
+                pattern: ^(https?|http):\/\/[^\s/$.?#].[^\s]*$
+                example: https://www.linkedin.com

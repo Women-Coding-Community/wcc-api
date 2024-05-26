@@ -47,9 +47,24 @@ paths:
           $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
         '403':
           $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
         '406':
           $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
         '429':
           $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
         '5XX':
           $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+security:
+- apiKey: []

@@ -77,26 +77,52 @@ $ curl https://wcc-cms.fly.dev/api/cms/v1/team  | jq .
 The output should be like this: 
 ```json
 {
-  "title": "Meet our team",
-  "subtitle": "Core Team",
-  "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.",
-  "members": [
-    {
-      "fullName": "Irina Kamalova",
-      "position": "Senior Software Engineer",
-      "memberType": "DIRECTOR",
-      "imagePath": "assets/images/team/8.jpeg",
-      "socialNetwork": [
-        {
-          "type": "LINKEDIN",
-          "link": "https://www.linkedin.com/in/irina-kamalova/"
-        },
-        {
-          "type": "MEDIUM",
-          "link": "https://iren-kamalova.medium.com/"
-        }
-      ]
+  "data": {
+    "title": "Meet our team",
+    "subtitle": "Core Team",
+    "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.",
+    "members": [
+      {
+        "fullName": "Irina Kamalova",
+        "memberType": "Director",
+        "position": "Senior Software Engineer",
+        "imagePath": "https://womencodingcommunity.com/assets/images/team/8.jpeg",
+        "network": [
+          {
+            "type": "Linkedin",
+            "link": "https://www.linkedin.com/in/irina-kamalova/"
+          },
+          {
+            "type": "Medium",
+            "link": "https://iren-kamalova.medium.com/"
+          }
+        ]
+      },
+      {
+        "fullName": "Eleonora Belova",
+        "memberType": "Lead",
+        "position": "Test Automation Engineer",
+        "imagePath": "https://womencodingcommunity.com/assets/images/team/7.jpeg",
+        "network": [
+          {
+            "type": "Linkedin",
+            "link": "https://www.linkedin.com/in/eleonora-belova-7069baa5/"
+          },
+          {
+            "type": "Github",
+            "link": "https://github.com/nora-weisser/"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "pagination": {
+      "totalItems": 50,
+      "totalPages": 2,
+      "currentPage": 1,
+      "pageSize": 25
     }
-  ]
+  }
 }
 ```

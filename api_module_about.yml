@@ -8,40 +8,71 @@ info:
 servers:
   - url: http://localhost:8080/api/cms/v1
   - url: https://wcc-cms.fly.dev/api/cms/v1
+
 paths:
   /team:
     get:
       summary: Get all team members
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 1
+            format: int32
+          required: false
+          description: Page number for pagination
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+            format: int32
+          required: false
+          description: Number of items per page
+      security:
+        - apiKey: [ ]
       responses:
         '200':
-          description: List the content of Team's Page
+          description: List the content of Team's Page with pagination
           content:
             application/json:
               schema:
-                $ref: 'schemas/modules.yml#/components/schemas/TeamPage'
+                $ref: '#/components/schemas/TeamPagePaginated'
               example:
-                title: Meet our team
-                subtitle: Core Team
-                description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
-                members:
-                  - fullName: Irina Kamalova
-                    memberType: Director
-                    position: Senior Software Engineer
-                    imagePath: https://womencodingcommunity.com/assets/images/team/8.jpeg
-                    network:
-                      - type: Linkedin
-                        link: https://www.linkedin.com/in/irina-kamalova/
-                      - type: Medium
-                        link: https://iren-kamalova.medium.com/
-                  - fullName: Eleonora Belova
-                    memberType: Lead
-                    position: Test Automation Engineer
-                    imagePath: https://womencodingcommunity.com/assets/images/team/7.jpeg
-                    network:
-                      - type: Linkedin
-                        link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
-                      - type: Github
-                        link: https://github.com/nora-weisser/
+                data:
+                  title: Meet our team
+                  subtitle: Core Team
+                  description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
+                  members:
+                    - fullName: Irina Kamalova
+                      memberType: Director
+                      position: Senior Software Engineer
+                      imagePath: https://womencodingcommunity.com/assets/images/team/8.jpeg
+                      network:
+                        - type: Linkedin
+                          link: https://www.linkedin.com/in/irina-kamalova/
+                        - type: Medium
+                          link: https://iren-kamalova.medium.com/
+                    - fullName: Eleonora Belova
+                      memberType: Lead
+                      position: Test Automation Engineer
+                      imagePath: https://womencodingcommunity.com/assets/images/team/7.jpeg
+                      network:
+                        - type: Linkedin
+                          link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
+                        - type: Github
+                          link: https://github.com/nora-weisser/
+                metadata:
+                  pagination:
+                    totalItems: 50
+                    totalPages: 2
+                    currentPage: 1
+                    pageSize: 25
 
         '401':
           $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
@@ -65,6 +96,18 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
+  schemas:
+    TeamPagePaginated:
+      type: object
+      required:
+        - data
+        - metadata
+      additionalProperties: false
+      properties:
+        data:
+          $ref: 'schemas/modules.yml#/components/schemas/MemberPage'
+        metadata:
+          $ref: 'schemas/responses.yml#/components/schemas/Metadata'
 
 security:
 - apiKey: []

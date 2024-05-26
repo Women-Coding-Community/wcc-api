@@ -1,6 +1,6 @@
 components:
   schemas:
-    TeamPage:
+    MemberPage:
       type: object
       required:
         - title
@@ -27,9 +27,9 @@ components:
           type: array
           maxItems: 30
           items:
-            $ref: '#/components/schemas/TeamMember'
+            $ref: '#/components/schemas/Member'
           
-    TeamMember:
+    Member:
       type: object
       required:
         - fullName
@@ -41,13 +41,13 @@ components:
         fullName:
           type: string
           maxLength: 30
-          pattern: '^[A-Z][a-z ]{0,29}$'
-          example: Irina Kamalova
+          pattern: ^[A-Za-z]{3,30}$
+          example: Adriana Zencke Zimmermann
         position:
           description: Professional experience
           type: string
           maxLength: 30
-          pattern: '^[A-Z][a-z ]{0,29}$'
+          pattern: ^[A-Za-z0-9]{3,30}$
           example: Senior Software Engineer
         memberType:
           $ref: 'enums.yml#/components/schemas/MemberType'

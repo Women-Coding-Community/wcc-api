@@ -38,6 +38,30 @@ components:
             $ref: '#/components/schemas/Error'
 
   schemas:
+    Metadata:
+      type: object
+      additionalProperties: false
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    Pagination:
+      type: object
+      additionalProperties: false
+      properties:
+        totalItems:
+          type: integer
+          example: 80
+        totalPages:
+          type: integer
+          example: 2
+        currentPage:
+          type: integer
+          example: 1
+        pageSize:
+          type: integer
+          example: 25
+
     Error:
       type: object
       additionalProperties: false

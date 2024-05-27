@@ -1,0 +1,21 @@
+components:
+  schemas:
+    SocialNetworkType:
+      type: string
+      enum:
+        - Youtube
+        - Github
+        - LinkedIn
+        - Instagram
+        - Facebook
+        - X
+        - Medium
+        - Slack
+        - Meetup
+        - Unknown
+
+    MemberType:
+      type: string
+      enum: [Director, Leader, Mentor, Mentee, Volunteer, Member, Speaker]
+      example: Director
+      description: Type of member in the organization

@@ -1,0 +1,36 @@
+components:
+  schemas:
+    attributes:
+      Link:
+        type: string
+        format: uri
+        example: https://www.linkedin.com
+
+      ImagePath:
+        type: string
+        pattern: '^(\/[\w\-\/]+\.(jpg|jpeg|png|gif|bmp))$|^(https?:\/\/[\w\-\.]+(\/[\w\-\/]*)*\.(jpg|jpeg|png|gif|bmp))$'
+        examples:
+          internalPath: /assets/folder/image.jpg
+          externalPath: http://domain.com/assets/image.jpg
+          externalPath2: https://domain.com/assets/image.jpg
+          imagePng: /assets/folder/image.png
+          imageJpeg: /assets/folder/image.jpeg
+
+      NetworkList:
+        type: array
+        maxItems: 10
+        items:
+          $ref: '#/components/schemas/attributes/SocialNetwork'
+
+      SocialNetwork:
+        type: object
+        required:
+          - type
+          - link
+        additionalProperties: false
+        properties:
+          type:
+            $ref: 'enums.yml#/components/schemas/SocialNetworkType'
+            example: Linkedin
+          link:
+            $ref: 'attributes.yml#/components/schemas/attributes/Link'

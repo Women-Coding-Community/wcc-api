@@ -27,17 +27,17 @@ components:
           type: object
           additionalProperties: false
           properties:
-            Director:
+            directors:
               type: array
               maxItems: 10
               items:
                 $ref: '#/components/schemas/Member'
-            Lead:
+            leads:
               type: array
               maxItems: 30
               items:
                 $ref: '#/components/schemas/Member'
-            Evangelist:
+            evangelists:
               maxItems: 6
               type: array
               items:

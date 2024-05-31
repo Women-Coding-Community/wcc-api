@@ -82,7 +82,7 @@ The output should be like this:
     "subtitle": "Core Team",
     "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.",
     "membersByType": {
-      "Directors": [
+      "directors": [
         {
           "fullName": "Irina Kamalova",
           "position": "Senior Software Engineer",
@@ -102,7 +102,7 @@ The output should be like this:
           ]
         }
       ],
-      "Leads": [
+      "leads": [
         {
           "fullName": "Eleonora Belova",
           "position": "Test Automation Engineer",
@@ -122,7 +122,7 @@ The output should be like this:
           ]
         }
       ],
-      "Evangelists": []
+      "evangelists": []
     }
   },
   "metadata": {

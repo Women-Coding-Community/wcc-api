@@ -3,19 +3,19 @@ components:
     SocialNetworkType:
       type: string
       enum:
-        - Youtube
-        - Github
-        - LinkedIn
-        - Instagram
-        - Facebook
-        - X
-        - Medium
-        - Slack
-        - Meetup
-        - Unknown
+        - youtube
+        - github
+        - linkedIn
+        - instagram
+        - facebook
+        - x
+        - medium
+        - slack
+        - meetup
+        - unknown
 
     MemberType:
       type: string
-      enum: [Director, Leader, Evangelist, Mentor, Mentee, Volunteer, Member, Speaker]
-      example: Director
+      enum: [director, leader, evangelist, mentor, mentee, volunteer, member, speaker]
+      example: director
       description: Type of member in the organization

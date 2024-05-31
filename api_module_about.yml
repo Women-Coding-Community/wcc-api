@@ -58,7 +58,7 @@ paths:
                   subtitle: Core Team
                   description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
                   membersByType:
-                    Directors:
+                    directors:
                       - fullName: Irina Kamalova
                         position: Senior Software Engineer
                         image:
@@ -69,7 +69,7 @@ paths:
                             link: https://www.linkedin.com/in/irina-kamalova/
                           - type: Medium
                             link: https://iren-kamalova.medium.com/
-                    Leads:
+                    leads:
                       - fullName: Eleonora Belova
                         position: Test Automation Engineer
                         image:
@@ -80,7 +80,7 @@ paths:
                             link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
                           - type: Github
                             link: https://github.com/nora-weisser
-                    Evangelists: [ ]
+                    evangelists: [ ]
                 metadata:
                   pagination:
                     totalItems: 50

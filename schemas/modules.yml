@@ -29,13 +29,16 @@ components:
           properties:
             Director:
               type: array
+              maxItems: 10
               items:
                 $ref: '#/components/schemas/Member'
             Lead:
               type: array
+              maxItems: 30
               items:
                 $ref: '#/components/schemas/Member'
             Evangelist:
+              maxItems: 6
               type: array
               items:
                 $ref: '#/components/schemas/Member'

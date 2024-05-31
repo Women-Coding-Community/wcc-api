@@ -12,8 +12,14 @@ servers:
 paths:
   /team:
     get:
-      summary: Get all team members
+      summary: Get team members grouped by MemberType
       parameters:
+        - in: query
+          name: memberType
+          required: false
+          schema:
+            $ref: 'schemas/enums.yml#/components/schemas/MemberType'
+          description: Filter team members by their MemberType, in case it is empty return all
         - in: query
           name: page
           schema:

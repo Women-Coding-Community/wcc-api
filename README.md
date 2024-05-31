@@ -81,40 +81,49 @@ The output should be like this:
     "title": "Meet our team",
     "subtitle": "Core Team",
     "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.",
-    "members": [
-      {
-        "fullName": "Irina Kamalova",
-        "memberType": "Director",
-        "position": "Senior Software Engineer",
-        "imagePath": "https://womencodingcommunity.com/assets/images/team/8.jpeg",
-        "network": [
-          {
-            "type": "Linkedin",
-            "link": "https://www.linkedin.com/in/irina-kamalova/"
+    "membersByType": {
+      "directors": [
+        {
+          "fullName": "Irina Kamalova",
+          "position": "Senior Software Engineer",
+          "image": {
+            "path": "https://womencodingcommunity.com/assets/images/team/8.jpeg",
+            "alt": "Director profile picture"
           },
-          {
-            "type": "Medium",
-            "link": "https://iren-kamalova.medium.com/"
-          }
-        ]
-      },
-      {
-        "fullName": "Eleonora Belova",
-        "memberType": "Lead",
-        "position": "Test Automation Engineer",
-        "imagePath": "https://womencodingcommunity.com/assets/images/team/7.jpeg",
-        "network": [
-          {
-            "type": "Linkedin",
-            "link": "https://www.linkedin.com/in/eleonora-belova-7069baa5/"
+          "network": [
+            {
+              "type": "Linkedin",
+              "link": "https://www.linkedin.com/in/irina-kamalova/"
+            },
+            {
+              "type": "Medium",
+              "link": "https://iren-kamalova.medium.com/"
+            }
+          ]
+        }
+      ],
+      "leads": [
+        {
+          "fullName": "Eleonora Belova",
+          "position": "Test Automation Engineer",
+          "image": {
+            "path": "https://womencodingcommunity.com/assets/images/team/7.jpeg",
+            "alt": "Leader profile picture"
           },
-          {
-            "type": "Github",
-            "link": "https://github.com/nora-weisser/"
-          }
-        ]
-      }
-    ]
+          "network": [
+            {
+              "type": "Linkedin",
+              "link": "https://www.linkedin.com/in/eleonora-belova-7069baa5/"
+            },
+            {
+              "type": "Github",
+              "link": "https://github.com/nora-weisser"
+            }
+          ]
+        }
+      ],
+      "evangelists": []
+    }
   },
   "metadata": {
     "pagination": {

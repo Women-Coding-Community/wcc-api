@@ -12,8 +12,17 @@ servers:
 paths:
   /team:
     get:
-      summary: Get all team members
+      summary: Get team members grouped by MemberType
       parameters:
+        - in: query
+          name: memberType
+          schema:
+            type: string
+            maxLength: 30
+            pattern: '^[A-Z][a-z ]{0,30}$'
+            example: Lead
+          required: false
+          description: Filter team members by their MemberType, in case it is empty return all types
         - in: query
           name: page
           schema:
@@ -48,25 +57,30 @@ paths:
                   title: Meet our team
                   subtitle: Core Team
                   description: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.
-                  members:
-                    - fullName: Irina Kamalova
-                      memberType: Director
-                      position: Senior Software Engineer
-                      imagePath: https://womencodingcommunity.com/assets/images/team/8.jpeg
-                      network:
-                        - type: Linkedin
-                          link: https://www.linkedin.com/in/irina-kamalova/
-                        - type: Medium
-                          link: https://iren-kamalova.medium.com/
-                    - fullName: Eleonora Belova
-                      memberType: Lead
-                      position: Test Automation Engineer
-                      imagePath: https://womencodingcommunity.com/assets/images/team/7.jpeg
-                      network:
-                        - type: Linkedin
-                          link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
-                        - type: Github
-                          link: https://github.com/nora-weisser/
+                  membersByType:
+                    directors:
+                      - fullName: Irina Kamalova
+                        position: Senior Software Engineer
+                        image:
+                          path: https://womencodingcommunity.com/assets/images/team/8.jpeg
+                          alt: Director profile image
+                        network:
+                          - type: Linkedin
+                            link: https://www.linkedin.com/in/irina-kamalova/
+                          - type: Medium
+                            link: https://iren-kamalova.medium.com/
+                    leads:
+                      - fullName: Eleonora Belova
+                        position: Test Automation Engineer
+                        image:
+                          path: https://womencodingcommunity.com/assets/images/team/1.jpeg
+                          alt: Lead profile image
+                        network:
+                          - type: Linkedin
+                            link: https://www.linkedin.com/in/eleonora-belova-7069baa5/
+                          - type: Github
+                            link: https://github.com/nora-weisser
+                    evangelists: [ ]
                 metadata:
                   pagination:
                     totalItems: 50

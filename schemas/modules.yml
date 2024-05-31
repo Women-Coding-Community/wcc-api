@@ -23,7 +23,23 @@ components:
           maxLength: 500
           pattern: '^[\w\s.,!?()-]{0,500}$'
           example: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.
-        members:
+        membersByType:
+          type: object
+          additionalProperties: false
+          properties:
+            Director:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+            Lead:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+            Evangelist:
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+        items:
           type: array
           maxItems: 30
           items:

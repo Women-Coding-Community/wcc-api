@@ -16,6 +16,6 @@ components:
 
     MemberType:
       type: string
-      enum: [Director, Leader, Mentor, Mentee, Volunteer, Member, Speaker]
+      enum: [Director, Leader, Evangelist, Mentor, Mentee, Volunteer, Member, Speaker]
       example: Director
       description: Type of member in the organization

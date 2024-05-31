@@ -82,12 +82,14 @@ The output should be like this:
     "subtitle": "Core Team",
     "description": "The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology.",
     "membersByType": {
-      "Director": [
+      "Directors": [
         {
           "fullName": "Irina Kamalova",
           "position": "Senior Software Engineer",
-          "memberType": "Director",
-          "imagePath": "https://womencodingcommunity.com/assets/images/team/8.jpeg",
+          "image": {
+            "path": "https://womencodingcommunity.com/assets/images/team/8.jpeg",
+            "alt": "Director profile picture"
+          },
           "network": [
             {
               "type": "Linkedin",
@@ -100,12 +102,14 @@ The output should be like this:
           ]
         }
       ],
-      "Lead": [
+      "Leads": [
         {
           "fullName": "Eleonora Belova",
           "position": "Test Automation Engineer",
-          "memberType": "Lead",
-          "imagePath": "https://womencodingcommunity.com/assets/images/team/7.jpeg",
+          "image": {
+            "path": "https://womencodingcommunity.com/assets/images/team/7.jpeg",
+            "alt": "Leader profile picture"
+          },
           "network": [
             {
               "type": "Linkedin",
@@ -118,7 +122,7 @@ The output should be like this:
           ]
         }
       ],
-      "Evangelist": []
+      "Evangelists": []
     }
   },
   "metadata": {

@@ -2,9 +2,20 @@ components:
   schemas:
     attributes:
       Link:
-        type: string
-        format: uri
-        example: https://www.linkedin.com
+        type: object
+        required:
+          - path
+        additionalProperties: false
+        properties:
+          path:
+            type: string
+            format: uri
+            example: "https://cloudprovider.com/image.png"
+          alt:
+            type: string
+            maxLength: 80
+            pattern: '^[A-Z][a-z ]{0,79}$'
+            example: Mentor profile photo
 
       ImagePath:
         type: string

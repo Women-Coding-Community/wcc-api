@@ -25,8 +25,10 @@ components:
             example: "https://cloudprovider.com/image.png"
           alt:
             type: string
-            maxLength: 30
-            pattern: '^[A-Z][a-z ]{0,30}$'
+            pattern: '^[A-Za-z\s]+$'
+            minLength: 20
+            maxLength: 80
+            example: "There are two women talking during a productive mentoring session"
           type:
             $ref: 'enums.yml#/components/schemas/ImageType'
 

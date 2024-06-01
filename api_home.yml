@@ -107,8 +107,6 @@ components:
         title:
           type: string
           example: Announcements
-        link:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
         events:
           type: array
           maxItems: 4
@@ -121,10 +119,9 @@ components:
         title:
           type: string
           example: Mentorship ad-hoc registration is open now
-        dateLabel:
+        date:
           type: string
-          example:
-            Registration: MAY 6 - MAY 17, 2024
+          example: Registration from MAY 6 - MAY 17, 2024
         endDate:
           type: integer
           example: 20240517
@@ -164,7 +161,7 @@ components:
           example: 20240517
         title:
           type: string
-          example:
+          example: |
             Book Club: The Pragmatic Programmer
         host:
           type: string
@@ -175,7 +172,7 @@ components:
         description:
           type: string
           example: >
-            Join us for a discussion of this essential guide to writing clear and maintainable code. We recommend that our attendees read the book before the event, however you are welcome to join us, even if you have only read the first chapter. The more, the merrier!
+            Join us for a discussion of this essential guide to writing clear and maintainable code!
         images:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
         link:
@@ -190,7 +187,7 @@ components:
         description:
           type: string
           example: >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         link:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
         images:

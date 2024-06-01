@@ -47,11 +47,60 @@ paths:
         - apiKey: [ ]
       responses:
         '200':
-          description: List the content of Team's Page with pagination
+          description: List the content of Team's Page
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamPagePaginated'
+                $ref: '#/components/schemas/TeamPage'
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
+  /collaborators:
+    get:
+      summary: Get all volunteers in the community that are not part of the leadership team
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 1
+            format: int32
+          required: false
+          description: Page number for pagination
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 25
+            format: int32
+          required: false
+          description: Number of items per page
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: List the content of collaborator.json's page with pagination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollaboratorPagePaginated'
         '401':
           $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
         '403':
@@ -75,7 +124,104 @@ components:
       in: header
       name: X-API-Key
   schemas:
-    TeamPagePaginated:
+    TeamPage:
+      type: object
+      required:
+        - page
+        - membersByType
+      additionalProperties: false
+      properties:
+        page:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
+        contact:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Contact'
+        membersByType:
+          type: object
+          additionalProperties: false
+          properties:
+            directors:
+              type: array
+              maxItems: 10
+              items:
+                $ref: '#/components/schemas/Member'
+            leads:
+              type: array
+              maxItems: 30
+              items:
+                $ref: '#/components/schemas/Member'
+            evangelists:
+              maxItems: 6
+              type: array
+              items:
+                $ref: '#/components/schemas/Member'
+
+    Member:
+      type: object
+      required:
+        - fullName
+        - position
+        - images
+      additionalProperties: false
+      properties:
+        fullName:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Full name
+        position:
+          description: Professional experience
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Senior Software Engineer
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+        network:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
+
+    CollaboratorPage:
+      type: object
+      additionalProperties: false
+      properties:
+        page:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
+        contact:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Contact'
+        collaborators:
+          type: array
+          maxItems: 30
+          items:
+            $ref: '#/components/schemas/Collaborator'
+
+    Collaborator:
+      type: object
+      required:
+        - fullName
+        - position
+        - memberType
+        - images
+      additionalProperties: false
+      properties:
+        fullName:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Full name
+        position:
+          description: Professional experience
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Senior Software Engineer
+        memberType:
+          $ref: 'schemas/enums.yml#/components/schemas/MemberType'
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+        network:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
+
+
+    CollaboratorPagePaginated:
       type: object
       required:
         - data
@@ -83,7 +229,7 @@ components:
       additionalProperties: false
       properties:
         data:
-          $ref: 'schemas/modules.yml#/components/schemas/MemberPage'
+          $ref: '#/components/schemas/CollaboratorPage'
         metadata:
           $ref: 'schemas/responses.yml#/components/schemas/Metadata'
 

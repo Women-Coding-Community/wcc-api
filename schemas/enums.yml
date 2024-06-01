@@ -12,6 +12,7 @@ components:
         - medium
         - slack
         - meetup
+        - email
         - unknown
 
     MemberType:

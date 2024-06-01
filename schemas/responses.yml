@@ -54,7 +54,7 @@ components:
           example: 80
         totalPages:
           type: integer
-          example: 2
+          example: 4
         currentPage:
           type: integer
           example: 1

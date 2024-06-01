@@ -1,0 +1,127 @@
+{
+  "heroSection": {
+    "title": "Women Coding Community",
+    "description": "Empowering Women in Their Tech Careers",
+    "images": {
+      "alt": "banner image alt",
+      "desktop": {
+        "path": "desktop.jpg"
+      },
+      "mobile ": {
+        "path": "mobile.jpg"
+      }
+    }
+  },
+  "programmesSection": {
+    "title": "Opportunities and Programmes",
+    "description": "Join our community and unlock endless opportunities. Network, find mentors, and access leadership programs. Whether you're aiming to enhance your skills, grow your professional network, or advance your career, we have what you need. We offer a wide range of opportunities to help you achieve your goals.",
+    "programmes": [
+      {
+        "name": "Mentorship",
+        "link": "/mentorship",
+        "icon": "Diversity2"
+      },
+      {
+        "name": "Online and in-person Events",
+        "link": "/events",
+        "icon": "CalendarMonth"
+      },
+      {
+        "name": "Book club",
+        "link": "/programmes/interview-preparation#book-club",
+        "icon": "AutoStories"
+      },
+      {
+        "name": "CV Clinic",
+        "link": "/programmes/interview-preparation#cv-clinic",
+        "icon": "WorkOutline"
+      },
+      {
+        "name": "Mock interview",
+        "link": "/programmes/interview-preparation#mock-interview",
+        "icon": "Group"
+      },
+      {
+        "name": "Leetcode",
+        "link": "/programmes/leetcode",
+        "icon": "Terminal"
+      }
+    ]
+  },
+  "announcementSection": [
+    {
+      "title": "Mentorship ad-hoc registration is open now",
+      "dateLabel": "Registration: MAY 6 - MAY 17, 2024",
+      "endDate": 20240517,
+      "description": "Sign up for this unique opportunity of one-time mentoring sessions with personalised guidance from experienced mentors.",
+      "link": {
+        "text": "Register now",
+        "url": "/mentorship/mentors"
+      },
+      "images": {
+        "alt": "Two women speaking during ad-hoc session",
+        "desktop": {
+          "path": "mentorship_ad_hoc_image.jpg"
+        },
+        "mobile ": {
+          "path": "mobile.jpg"
+        }
+      }
+    }
+  ],
+  "eventsSection": {
+    "title": "Events",
+    "link": {
+      "text": "Check all events",
+      "url": "/events"
+    },
+    "events": [
+      {
+        "type": "Book Club",
+        "date": "THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST",
+        "endDate": 20240517,
+        "title": "Book Club: The Pragmatic Programmer",
+        "host": "Sasha Northon and Lana Rey",
+        "speaker": "John Smith",
+        "description": "Join us for a discussion of this essential guide to writing clear and maintainable code. We recommend that our attendees read the book before the event, however you are welcome to join us, even if you have only read the first chapter. The more, the merrier!",
+        "images": {
+          "alt": "Two women speaking during ad-hoc session",
+          "desktop": {
+            "path": "the_pragmatic_programmer_desktop.jpg"
+          },
+          "mobile ": {
+            "path": "the_pragmatic_programmer_mobile.jpg"
+          },
+          "tablet ": {
+            "path": "the_pragmatic_programmer_tablet.jpg"
+          }
+        },
+        "link": {
+          "text": "Go to Meetup Event",
+          "url": "https://www.meetup.com/women-coding-community/events/300906339"
+        }
+      }
+    ]
+  },
+  "volunteerSection": {
+    "title": "Volunteer With Us",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+    "link": {
+      "text": "Learn more about volunteering",
+      "url": "/about-us/volunteer"
+    },
+    "images": {
+      "alt": "Two women speaking",
+      "desktop": {
+        "path": "desktop.jpg"
+      },
+      "mobile ": {
+        "path": "mobile.jpg"
+      },
+      "tablet ": {
+        "path": "tablet.jpg"
+      }
+    }
+  }
+}
+

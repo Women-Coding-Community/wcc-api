@@ -9,7 +9,6 @@ servers:
   - url: http://localhost:8080/api/cms/v1
   - url: https://wcc-cms.fly.dev/api/cms/v1
 paths:
-  /events:
     get:
       summary: Get Events Page contents
       security:
@@ -21,7 +20,6 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventPage'
 
 
                 '401':
@@ -41,37 +39,35 @@ paths:
                   $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
     components:
-       securitySchemes:
+      securitySchemes:
         apiKey:
           type: apiKey
           in: header
           name: X-API-Key
-       schemas:
+      schemas:
         EventPage:
-           type: object
-           properties:
-            heroSection:
-             $ref: '#/components/schemas/HeroSection'
-            pageIntroSection:
-             $ref: '#/components/schemas/PageIntroSection'
-            eventsSearchSection:
-             $ref: '#/components/schemas/EventSearchSection'
-
-
-
-        HeroSection:
-         $ref: '#/components/schemas/HeroSection'
-
-        PageIntroSection:
           type: object
           properties:
-            paragraph:
-             type: string
-             example: |
-               Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
-                Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
-                 Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
-       
+            heroSection:
+              $ref: '#/components/schemas/HeroSection'
+            pageIntroSection:
+              $ref: '#/components/schemas/PageIntroSection'
+            eventsSearchSection:
+              $ref: '#/components/schemas/EventSearchSection'
+
+
+
+
+        PageIntroSection:
+                type: object
+                properties:
+                  paragraph:
+                    type: string
+                    example: |
+                      Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
+                      Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
+                      Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
+
 
         EventsSearchSection:
           type: object
@@ -93,11 +89,10 @@ paths:
                   $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                   description: Link for past events
 
-            filterComponent:
+              filterComponent:
                 type: object
-               #-- the search filter component doesn't exist in attributes.yml
 
-            searchListing:
+              searchListing:
                 type: object
                 properties:
                 - categoryTag:
@@ -108,7 +103,6 @@ paths:
                    example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
                 - eventTitle:
                     type: string
-                    example: "Book Club Online event: The Pragmatic Programmer"
                 - eventHost:
                     type: string
                     example: Jane Doe
@@ -129,10 +123,8 @@ paths:
                       title:
                         type: string
                         example: "Event Resources:"
-                - link:
                         $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                         description: "Slides link"
-                - link:
                         $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                         description: "Recording link"
 

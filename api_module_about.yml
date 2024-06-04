@@ -103,25 +103,3 @@ paths:
 
         default:
           $ref: 'schemas/responses.yml#/components/responses/Forbidden'
-
-components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: X-API-Key
-  schemas:
-    TeamPagePaginated:
-      type: object
-      required:
-        - data
-        - metadata
-      additionalProperties: false
-      properties:
-        data:
-          $ref: 'schemas/modules.yml#/components/schemas/MemberPage'
-        metadata:
-          $ref: 'schemas/responses.yml#/components/schemas/Metadata'
-
-security:
-- apiKey: []

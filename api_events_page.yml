@@ -9,7 +9,7 @@ servers:
   - url: http://localhost:8080/api/cms/v1
   - url: https://wcc-cms.fly.dev/api/cms/v1
 paths:
-  /events:
+  /event-page:
     get:
       summary: Get Events Page contents
       security:
@@ -21,7 +21,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventPage'
+                $ref: '#components/schemas/EventsPage'
 
 
                 '401':
@@ -41,37 +41,107 @@ paths:
                   $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
     components:
-       securitySchemes:
+      securitySchemes:
         apiKey:
           type: apiKey
           in: header
+#-- Is there an API key for Events Page?if yes, where? Hero section?
           name: X-API-Key
-       schemas:
+      schemas:
+
         EventPage:
-           type: object
-           properties:
+          type: object
+          properties:
             heroSection:
-             $ref: '#/components/schemas/HeroSection'
+              $ref: '#/components/schemas/HeroSection'
             pageIntroSection:
-             $ref: '#/components/schemas/PageIntroSection'
+              $ref: '#/components/schemas/PageIntroSection'
             eventsSearchSection:
-             $ref: '#/components/schemas/EventSearchSection'
+              $ref: '#/components/schemas/EventSearchSection'
 
 
 
-        HeroSection:
-         $ref: '#/components/schemas/HeroSection'
+        HeroSection: #-- this hero is different from the hero home page
+          type: object
+          properties:
+            title:
+              type: string
+              example: Online and In-Person Events
+              maxLength: 50 #-- to decide together
+            description:
+              type: string
+              example: Online and In-Person Events #-- is description optional or better keep it?
+            images:
+              type: object
+              properties:
+                desktop:
+                  $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+                mobile:
+                  $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+
+                variation:
+                  type: string
+                  enum:
+                   - No image
+                   - With Image: Left-aligned title
+                   - With Image: Center-aligned title
+                  example: No Image
+                  description: Image variation in hero section
+#-- The Figma design Events Page uses left-aligned title for desktop
+#-- and center-aling for mobile
+        # Enums added. I suppose I have to upload tehm on enums.yml too?
 
         PageIntroSection:
           type: object
           properties:
-            paragraph:
-             type: string
-             example: |
-               Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
-                Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
-                 Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
-       
+           desktop:
+             layout:
+             type: object
+             description: layout for desktop with 2 columns
+             properties:
+              leftColumn:
+                type: object
+                properties:
+                  paragraph:
+                    type: string
+                    example: |
+                      Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
+                      Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
+                      Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
+              rightColumn:
+                type: object
+                properties:
+                  registrationButton:
+                    type: string
+                    description: text for registration button
+                    example: Register as Event Speaker
+                    #-- I have some doubt about the registration button - does it need some sort of functionality?
+                  contact:
+                    $ref: 'schemas/attributes.yml#/components/schemas/attributes/Contact'
+
+           mobile:
+             type: object
+             properties:
+             layout:
+              type: object
+              description: Layout for mobile should be 1 column
+              properties:
+                paragraph:
+                  type: string
+                  example: |
+                   Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
+                   Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
+                   Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends.
+                   Connect, grow, and thrive with fellow members in a supportive environment.
+
+                registrationButton:
+                   type: string
+                   description: text for registration button
+                   example: Register as Event Speaker
+                  #-- I have some doubt about the registration button - does it need some sort of functionality?
+
+                contact:
+                    $ref: 'schemas/attributes.yml#/components/schemas/attributes/Contact'
 
         EventsSearchSection:
           type: object
@@ -93,22 +163,23 @@ paths:
                   $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                   description: Link for past events
 
-            filterComponent:
+              filterComponent:
                 type: object
-               #-- the search filter component doesn't exist in attributes.yml
+                $ref: 'schemas/attributes.yml#/components/schemas/filterComponent'
 
-            searchListing:
+              searchListing:
                 type: object
                 properties:
                 - categoryTag:
                     type: string
                     description: book club
+                    #-- figma prototype has the calendar icon
                 - eventDateTime:
                    type: string
                    example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
                 - eventTitle:
                     type: string
-                    example: "Book Club Online event: The Pragmatic Programmer"
+                    example: "Book Club Online event: THe Pragmatic Programmer"
                 - eventHost:
                     type: string
                     example: Jane Doe
@@ -129,10 +200,10 @@ paths:
                       title:
                         type: string
                         example: "Event Resources:"
-                - link:
+                      link:
                         $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                         description: "Slides link"
-                - link:
+                      link:
                         $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                         description: "Recording link"
 

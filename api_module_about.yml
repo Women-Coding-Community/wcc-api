@@ -124,10 +124,14 @@ paths:
                 items:
                   - title: Our Standards
                     description: | 
-                      To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:
-                  - title: Our Standards
-                    description: | 
-                      To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:
+                      To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:\n
+                    items:
+                        - "Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully."
+                        - "Inclusivity: Actively seek to acknowledge and respect the diversity of our community."
+                  - title: Unacceptable Behavior
+                    description: |
+                      The following behaviors are considered harassment and are unacceptable within our community:
+                        - Violence, threats of violence, or violent language directed against another member or group.
 
         '401':
           $ref: 'schemas/responses.yml#/components/responses/Unauthorized'

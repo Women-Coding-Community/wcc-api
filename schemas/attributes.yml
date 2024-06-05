@@ -3,12 +3,22 @@ components:
     attributes:
       SimpleSection:
         type: object
+        required:
+          - title
+          - description
         properties:
           title:
             $ref: '#/components/schemas/attributes/Title'
           description:
             type: string
             example: To insure a positive experience for all our members ...
+          items:
+            type: array
+            maxItems: 10
+            items:
+              type: string
+              example: | 
+                Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully.
 
       Link:
         type: string

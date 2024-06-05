@@ -6,10 +6,17 @@ components:
         format: uri
         example: https://www.linkedin.com
 
+      Images:
+        type: array
+        maxItems: 3
+        items:
+          $ref: '#/components/schemas/attributes/Image'
+
       Image:
         type: object
         required:
           - path
+          - type
         additionalProperties: false
         properties:
           path:
@@ -18,8 +25,12 @@ components:
             example: "https://cloudprovider.com/image.png"
           alt:
             type: string
-            maxLength: 30
-            pattern: '^[A-Z][a-z ]{0,30}$'
+            pattern: '^[A-Za-z\s]+$'
+            minLength: 20
+            maxLength: 80
+            example: "There are two women talking during a productive mentoring session"
+          type:
+            $ref: 'enums.yml#/components/schemas/ImageType'
 
       NetworkList:
         type: array

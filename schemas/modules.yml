@@ -47,7 +47,7 @@ components:
           maxItems: 30
           items:
             $ref: '#/components/schemas/Member'
-          
+
     Member:
       type: object
       required:
@@ -70,8 +70,8 @@ components:
           example: Senior Software Engineer
         memberType:
           $ref: 'enums.yml#/components/schemas/MemberType'
-        image:
-          $ref: 'attributes.yml#/components/schemas/attributes/Image'
+        images:
+          $ref: 'attributes.yml#/components/schemas/attributes/Images'
         network:
           type: array
           maxItems: 6

@@ -59,10 +59,12 @@ Helpful to check if your API is corrected created and no error exist.
 
 ### View/Edit
 
-1. Open one of the API files you want to see, for example: [api_module_about.yml](api_about.yml)
-2. Open the OpenAPI View from your IDE
-3. You will be able to see all paths and can start to edit
-4. For more details check the plugging webpage
+1. Open one of the API files you want to see, for example: [api_about.yml](api_about.yml)
+1. Open the OpenAPI View from your IDE
+1. You will be able to see all paths and can start to edit
+1. There are 2 servers on the swagger UI - default is set to `localhost`
+1. Choose the correct server if you want to test the api
+1. For more details check the plugging webpage
 
 ### Check for errors
 

@@ -143,41 +143,17 @@ components:
               type: array
               maxItems: 10
               items:
-                $ref: '#/components/schemas/Member'
+                $ref: 'schemas/domain.yml#/components/schemas/Member'
             leads:
               type: array
               maxItems: 30
               items:
-                $ref: '#/components/schemas/Member'
+                $ref: 'schemas/domain.yml#/components/schemas/Member'
             evangelists:
               maxItems: 6
               type: array
               items:
-                $ref: '#/components/schemas/Member'
-
-    Member:
-      type: object
-      required:
-        - fullName
-        - position
-        - images
-      additionalProperties: false
-      properties:
-        fullName:
-          type: string
-          maxLength: 30
-          pattern: '^[A-Za-z\s]+$'
-          example: Full name
-        position:
-          description: Professional experience
-          type: string
-          maxLength: 30
-          pattern: '^[A-Za-z\s]+$'
-          example: Senior Software Engineer
-        images:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
-        network:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
+                $ref: 'schemas/domain.yml#/components/schemas/Member'
 
     CollaboratorPage:
       type: object
@@ -196,30 +172,14 @@ components:
     Collaborator:
       type: object
       required:
-        - fullName
-        - position
+        - details
         - memberType
-        - images
       additionalProperties: false
       properties:
-        fullName:
-          type: string
-          maxLength: 30
-          pattern: '^[A-Za-z\s]+$'
-          example: Full name
-        position:
-          description: Professional experience
-          type: string
-          maxLength: 30
-          pattern: '^[A-Za-z\s]+$'
-          example: Senior Software Engineer
+        details:
+          $ref: 'schemas/domain.yml#/components/schemas/Member'
         memberType:
           $ref: 'schemas/enums.yml#/components/schemas/MemberType'
-        images:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
-        network:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
-
 
     CollaboratorPagePaginated:
       type: object

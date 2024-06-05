@@ -1,0 +1,25 @@
+components:
+  schemas:
+    Member:
+      type: object
+      required:
+        - fullName
+        - position
+        - images
+      additionalProperties: false
+      properties:
+        fullName:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Full name
+        position:
+          description: Professional experience
+          type: string
+          maxLength: 30
+          pattern: '^[A-Za-z\s]+$'
+          example: Senior Software Engineer
+        images:
+          $ref: 'attributes.yml#/components/schemas/attributes/Images'
+        network:
+          $ref: 'attributes.yml#/components/schemas/attributes/NetworkList'

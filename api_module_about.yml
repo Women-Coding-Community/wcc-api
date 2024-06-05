@@ -104,6 +104,47 @@ paths:
         default:
           $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
+  /code_of_conduct:
+    get:
+      summary: Get Code of Conduct
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: List the content of Code of Conduct's Page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeOfConductPage'
+              example:
+                page:
+                  title: Code of Conduct
+                  description: |
+                    At Women Coding Community we are committed to a vibrant, supportive community where women can network, share experiences, and foster professional relationships, regardless of age, gender, visible or invisible disability, ethnicity, gender expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, sexual orientation or preferred programming language(s).
+                items:
+                  - title: Our Standards
+                    description: | 
+                      To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:
+                  - title: Our Standards
+                    description: | 
+                      To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:
+
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
 components:
   securitySchemes:
     apiKey:
@@ -122,6 +163,17 @@ components:
           $ref: 'schemas/modules.yml#/components/schemas/MemberPage'
         metadata:
           $ref: 'schemas/responses.yml#/components/schemas/Metadata'
+
+    CodeOfConductPage:
+      type: object
+      properties:
+        page:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
+        sections:
+          type: array
+          maxItems: 10
+          items:
+            $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimpleSection'
 
 security:
 - apiKey: []

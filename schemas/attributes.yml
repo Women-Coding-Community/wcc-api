@@ -1,6 +1,15 @@
 components:
   schemas:
     attributes:
+      SimpleSection:
+        type: object
+        properties:
+          title:
+            $ref: '#/components/schemas/attributes/Title'
+          description:
+            type: string
+            example: To insure a positive experience for all our members ...
+
       Link:
         type: string
         format: uri

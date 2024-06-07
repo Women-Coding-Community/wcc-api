@@ -12,10 +12,17 @@ components:
         - medium
         - slack
         - meetup
+        - email
         - unknown
 
     MemberType:
       type: string
-      enum: [director, leader, evangelist, mentor, mentee, volunteer, member, speaker]
+      enum: [ director, leader, evangelist, mentor, mentee, volunteer, member, speaker ]
       example: director
       description: Type of member in the organization
+
+    ImageType:
+      type: string
+      enum: [ desktop, mobile, tablet ]
+      example: desktop
+      description: Different sizes of images

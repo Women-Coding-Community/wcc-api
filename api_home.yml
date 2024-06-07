@@ -1,0 +1,197 @@
+openapi: 3.0.0
+
+info:
+  title: Home Page API
+  description: API to retrieve information for the homepage
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api/cms/v1
+  - url: https://wcc-cms.fly.dev/api/cms/v1
+
+paths:
+  /homePage:
+    get:
+      summary: Get Home Page content
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: List the content of Home's Page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePage'
+
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+
+    HomePage:
+      type: object
+      properties:
+        heroSection:
+          $ref: '#/components/schemas/HeroSection'
+        programmesSection:
+          $ref: '#/components/schemas/ProgrammesSection'
+        announcementSection:
+          $ref: '#/components/schemas/AnnouncementSection'
+        eventsSection:
+          $ref: '#/components/schemas/EventsSection'
+        volunteerSection:
+          $ref: '#/components/schemas/VolunteerSection'
+
+    HeroSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Women Coding Community
+        description:
+          type: string
+          example: Empowering Women in Their Tech Careers
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+
+    ProgrammesSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Opportunities and Programmes
+        description:
+          type: string
+          example: >
+            Join our community and unlock endless opportunities. Network, find mentors, and access leadership programs. Whether you're aiming to enhance your skills, grow your professional network, or advance your career, we have what you need. We offer a wide range of opportunities to help you achieve your goals.
+        programmes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Programme'
+
+    Programme:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Mentorship
+        link:
+          type: string
+          example: /mentorship
+        icon:
+          type: string
+          example: Diversity2
+
+    AnnouncementSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Announcements
+        events:
+          type: array
+          maxItems: 4
+          items:
+            $ref: '#/components/schemas/Announcement'
+
+    Announcement:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Mentorship ad-hoc registration is open now
+        date:
+          type: string
+          example: Registration from MAY 6 - MAY 17, 2024
+        endDate:
+          type: integer
+          example: 20240517
+        description:
+          type: string
+          example: Sign up for this unique opportunity of one-time mentoring sessions with personalised guidance from experienced mentors.
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+
+    EventsSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Events
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+        events:
+          type: array
+          maxItems: 4
+          items:
+            $ref: '#/components/schemas/Event'
+
+    Event:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Book Club
+        date:
+          type: string
+          example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
+        endDate:
+          type: integer
+          example: 20240517
+        title:
+          type: string
+          example: |
+            Book Club: The Pragmatic Programmer
+        host:
+          type: string
+          example: Sasha Northon and Lana Rey
+        speaker:
+          type: string
+          example: John Smith
+        description:
+          type: string
+          example: >
+            Join us for a discussion of this essential guide to writing clear and maintainable code!
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+
+    VolunteerSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Volunteer With Us
+        description:
+          type: string
+          example: >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+
+security:
+  - apiKey: [ ]

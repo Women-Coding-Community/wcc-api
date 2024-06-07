@@ -1,6 +1,36 @@
 components:
   schemas:
     attributes:
+      SimplePage:
+        type: object
+        required:
+          - path
+          - type
+        additionalProperties: false
+        properties:
+          title:
+            type: string
+            maxLength: 30
+            pattern: '^[A-Za-z\s]+$'
+            example: Team
+          subtitle:
+            type: string
+            maxLength: 30
+            pattern: '^[A-Za-z\s]+$'
+            example: Core Team
+          description:
+            type: string
+            maxLength: 500
+            pattern: '^[\w\s.,!?()-]{0,500}$'
+            example: The core team of our community is composed of visionary directors and dynamic leaders, who bring a wealth of experience and dedication to empowering women in technology. These esteemed professionals are committed to fostering an environment of growth, inclusivity and support, guiding our community toward achieving its mission and goals.
+
+      Title:
+        type: string
+        pattern: '^[A-Za-z\s]+$'
+        minLength: 3
+        maxLength: 30
+        example: "Page Title"
+
       SimpleSection:
         type: object
         required:
@@ -25,10 +55,23 @@ components:
         format: uri
         example: https://www.linkedin.com
 
+      Links:
+        type: array
+        maxItems: 6
+        items:
+          $ref: '#/components/schemas/attributes/SocialNetwork'
+
+      Images:
+        type: array
+        maxItems: 3
+        items:
+          $ref: '#/components/schemas/attributes/Image'
+
       Image:
         type: object
         required:
           - path
+          - type
         additionalProperties: false
         properties:
           path:
@@ -37,8 +80,12 @@ components:
             example: "https://cloudprovider.com/image.png"
           alt:
             type: string
-            maxLength: 30
-            pattern: '^[A-Z][a-z ]{0,30}$'
+            pattern: '^[A-Za-z\s]+$'
+            minLength: 20
+            maxLength: 80
+            example: "There are two women talking during a productive mentoring session"
+          type:
+            $ref: 'enums.yml#/components/schemas/ImageType'
 
       NetworkList:
         type: array
@@ -58,3 +105,44 @@ components:
             example: Linkedin
           link:
             $ref: 'attributes.yml#/components/schemas/attributes/Link'
+
+      Contact:
+        type: object
+        required:
+          - title
+          - links
+        additionalProperties: false
+        properties:
+          title:
+            $ref: '#/components/schemas/attributes/Title'
+            example: Contact us
+          links:
+            $ref: 'attributes.yml#/components/schemas/attributes/Links'
+        example:
+          title: "Contact us"
+          links:
+            - type: email
+              link: london@wcc.com
+            - type: slack
+              link: http://shortlink_to_slack.com
+
+
+      Page:
+        type: object
+        required:
+          - title
+          - links
+        additionalProperties: false
+        properties:
+          title:
+            $ref: '#/components/schemas/attributes/Title'
+            example: Contact us
+          links:
+            $ref: 'attributes.yml#/components/schemas/attributes/Links'
+        example:
+          title: "Contact us"
+          links:
+            - type: email
+              link: london@wcc.com
+            - type: slack
+              link: http://shortlink_to_slack.com

@@ -104,7 +104,7 @@ paths:
         default:
           $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
-  /code_of_conduct:
+  /code-of-conduct:
     get:
       summary: Get Code of Conduct
       security:

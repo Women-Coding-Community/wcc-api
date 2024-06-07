@@ -1,0 +1,77 @@
+openapi: 3.0.0
+
+info:
+  title: Section "Footer" API
+  description: API to retrieve information about footer
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost:8080/api/cms/v1
+  - url: https://wcc-cms.fly.dev/api/cms/v1
+
+paths:
+  /footer:
+    get:
+      summary: Get footer information
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: Get the content for footer page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Footer'
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    Footer:
+      type: object
+      required:
+        - title
+        - subtitle
+        - description
+        - network
+        - link
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
+          example: Footer
+        subtitle:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
+        description:
+          type: string
+          maxLength: 30
+          pattern: '^[A-Z][a-z ]{0,29}$'
+        network:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+security:
+- apiKey: []

@@ -41,14 +41,14 @@ components:
             $ref: '#/components/schemas/attributes/Title'
           description:
             type: string
-            example: To insure a positive experience for all our members ...
+            example: To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:\n
           items:
             type: array
             maxItems: 10
             items:
               type: string
-              example: | 
-                Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully.
+              example:
+                "Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully."                
 
       Link:
         type: string

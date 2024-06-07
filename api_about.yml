@@ -117,6 +117,35 @@ paths:
         default:
           $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
+  /code-of-conduct:
+    get:
+      summary: Get Code of Conduct
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: List the content of Code of Conduct's Page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeOfConductPage'
+
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
 components:
   securitySchemes:
     apiKey:
@@ -192,6 +221,17 @@ components:
           $ref: '#/components/schemas/CollaboratorPage'
         metadata:
           $ref: 'schemas/responses.yml#/components/schemas/Metadata'
+
+    CodeOfConductPage:
+      type: object
+      properties:
+        page:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
+        sections:
+          type: array
+          maxItems: 10
+          items:
+            $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimpleSection'
 
 security:
   - apiKey: [ ]

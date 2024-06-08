@@ -1,0 +1,10 @@
+name: pageSize
+in: query
+description: Number of items per page
+required: false
+schema:
+  type: integer
+  minimum: 1
+  maximum: 100
+  default: 25
+  format: int32

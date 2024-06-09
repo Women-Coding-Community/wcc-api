@@ -1,0 +1,9 @@
+name: memberType
+in: query
+description: Filter team members by their MemberType, in case it is empty return all types
+required: false
+schema:
+  type: string
+  maxLength: 30
+  pattern: '^[A-Z][a-z ]{0,30}$'
+  example: Lead

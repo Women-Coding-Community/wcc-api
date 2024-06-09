@@ -52,6 +52,8 @@ components:
       properties:
         heroSection:
           $ref: '#/components/schemas/HeroSection'
+        fullBannerSection:
+          $ref: '#/components/schemas/FullBannerSection'
         programmesSection:
           $ref: '#/components/schemas/ProgrammesSection'
         announcementSection:
@@ -72,6 +74,21 @@ components:
           example: Empowering Women in Their Tech Careers
         images:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+
+    FullBannerSection:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Become a Mentor
+        description:
+          type: string
+          example: |
+            Ready to empower and be empowered in tech? Become a mentor! Expand your network, give back, share expertise, and discover new perspectives.
+        images:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+        link:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
 
     ProgrammesSection:
       type: object

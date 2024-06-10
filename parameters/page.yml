@@ -1,0 +1,10 @@
+name: page
+in: query
+description: Page number for pagination
+required: false
+schema:
+  type: integer
+  minimum: 1
+  maximum: 100
+  default: 1
+  format: int32

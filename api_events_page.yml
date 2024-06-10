@@ -8,69 +8,88 @@ info:
 servers:
   - url: http://localhost:8080/api/cms/v1
   - url: https://wcc-cms.fly.dev/api/cms/v1
+
 paths:
-    get:
-      summary: Get Events Page contents
-      security:
-        - apiKey: [ ]
-      parameters: []
-      responses:
-        "200":
-          description: List of Events
-          content:
-            application/json:
-              schema:
+  /events:
+   get:
+    summary: Get Events Page contents
+    security:
+      - apiKey: [ ]
+    parameters: [ ]
+    responses:
+      '200':
+        description: List of Events
+        content:
+           application/json:
+             schema:
+              $ref: '#/components/schemas/Events'
+
+      '401':
+        $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+      '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+      '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+      '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+      '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+      '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+      default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
 
-                '401':
-                  $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
-                '403':
-                  $ref: 'schemas/responses.yml#/components/responses/Forbidden'
-                '404':
-                  $ref: 'schemas/responses.yml#/components/responses/NotFound'
-                '406':
-                  $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
-                '429':
-                  $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
-                '5XX':
-                  $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
 
-                default:
-                  $ref: 'schemas/responses.yml#/components/responses/Forbidden'
 
-    components:
-      securitySchemes:
-        apiKey:
-          type: apiKey
-          in: header
-          name: X-API-Key
-      schemas:
-        EventPage:
+components:
+    securitySchemes:
+      apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+    schemas:
+        Events:
           type: object
+          required:
+            - heroSection
+            - pageIntroSection
+            - eventSearchSection
+
+
           properties:
             heroSection:
-              $ref: '#/components/schemas/HeroSection'
+              $ref: 'api_home.yml#/components/schemas/HeroSection'
             pageIntroSection:
               $ref: '#/components/schemas/PageIntroSection'
-            eventsSearchSection:
+            eventSearchSection:
               $ref: '#/components/schemas/EventSearchSection'
 
 
-
+        HeroSection:
+             $ref: 'api_home.yml#/components/schemas/HeroSection'
 
         PageIntroSection:
-                type: object
-                properties:
-                  paragraph:
-                    type: string
-                    example: |
-                      Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
-                      Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
-                      Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
+            type: object
+            properties:
+              paragraph:
+                type: string
+                example: |
+                  Join the Women Coding Community for events and meetups that enhance your skills, deepen your knowledge, and expand your professional network.
+                   Our events include webinars, hands-on workshops, study groups, panel discussions, and keynotes with industry experts.
+                    Whether online or in-person, these gatherings offer valuable opportunities to share insights, learn collaboratively, and stay updated on the latest trends. Connect, grow, and thrive with fellow members in a supportive environment.
+          
+        
 
-
-        EventsSearchSection:
+        EventSearchSection:
           type: object
+          required:
+           - title
+           - navbar
+           - filterComponent
+           - searchListing
           properties:
             title:
               type: string
@@ -89,20 +108,43 @@ paths:
                   $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
                   description: Link for past events
 
-              filterComponent:
-                type: object
 
-              searchListing:
+            filterComponent:
                 type: object
                 properties:
+                  searchInput:
+                    type: string
+                    description: placeholder text label
+                  clearSearchInput:
+                    type: boolean
+                    description: clear search input 'x' button
+                  resultsHeader:
+                    type: object
+                    properties:
+                      totalResults:
+                        type: integer
+                        description: Total results number
+                      clearAllFilters:
+                        type: boolean
+                        description: Clear All Filters button
+
+
+
+
+            searchListing:
+              type: object
+              properties:
                 - categoryTag:
                     type: string
                     description: book club
+
                 - eventDateTime:
-                   type: string
-                   example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
+                    type: string
+                    example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
                 - eventTitle:
                     type: string
+                    example: "Book Club Online event: The Pragmatic Programmer"
+
                 - eventHost:
                     type: string
                     example: Jane Doe
@@ -115,22 +157,21 @@ paths:
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 - link:
-                      $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
-                      description: "Meetup link"
+                    $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+                    description: "Meetup link"
                 - eventResources:
                     type: object
                     properties:
                       title:
                         type: string
                         example: "Event Resources:"
-                        $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
-                        description: "Slides link"
-                        $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
-                        description: "Recording link"
 
-
-
-
+                - link:
+                    $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+                    description: "Slides link"
+                - link:
+                    $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+                    description: "Recording link"
 
 
 

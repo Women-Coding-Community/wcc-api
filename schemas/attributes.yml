@@ -31,6 +31,25 @@ components:
         maxLength: 30
         example: "Page Title"
 
+      SimpleSection:
+        type: object
+        required:
+          - title
+          - description
+        properties:
+          title:
+            $ref: '#/components/schemas/attributes/Title'
+          description:
+            type: string
+            example: To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:\n
+          items:
+            type: array
+            maxItems: 10
+            items:
+              type: string
+              example:
+                "Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully."                
+
       Link:
         type: string
         format: uri

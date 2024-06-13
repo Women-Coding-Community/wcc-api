@@ -72,6 +72,24 @@ components:
         network:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/NetworkList'
         link:
-          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+          type: object
+          required:
+            - title
+            - label
+            - url
+          additionalProperties: false
+          properties:
+            title:
+              type: string
+              maxLength: 30
+              pattern: '^[A-Z][a-z ]{0,29}$'
+              example: "Experiencing Technical Issues?"
+            label:
+              type: string
+              maxLength: 30
+              pattern: '^[A-Z][a-z ]{0,29}$'
+              example: "Send us a report"
+            url:
+              $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
 security:
 - apiKey: []

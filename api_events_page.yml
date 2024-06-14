@@ -55,23 +55,11 @@ components:
       additionalProperties: false
       properties:
         heroSection:
-          $ref: '#/components/schemas/HeroSection'
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/HeroSection'
         pageIntroSection:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
         eventSection:
           $ref: '#/components/schemas/EventCard'
-
-    HeroSection:
-      type: object
-      properties:
-        title:
-          type: string
-          example: Women Coding Community
-        description:
-          type: string
-          example: Empowering Women in Their Tech Careers
-        images:
-         $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
 
     EventCard:
       type: object

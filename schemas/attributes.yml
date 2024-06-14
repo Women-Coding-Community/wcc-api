@@ -162,5 +162,15 @@ components:
             - type: slack
               link: http://shortlink_to_slack.com
 
-
+      HeroSection:
+        type: object
+        properties:
+          title:
+            type: string
+            example: Women Coding Community
+          description:
+            type: string
+            example: Empowering Women in Their Tech Careers
+          images:
+            $ref: '#/components/schemas/attributes/Images'
 

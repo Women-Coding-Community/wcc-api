@@ -41,7 +41,7 @@ components:
             $ref: '#/components/schemas/attributes/Title'
           description:
             type: string
-            example: To ensure a positive experience for all members, we expect participants to exhibit the following behaviors:\n
+            example: To ensure a positive experience for all members, we expect participants to exhibit the following behaviours:\n
           items:
             type: array
             maxItems: 10
@@ -161,3 +161,6 @@ components:
               link: london@wcc.com
             - type: slack
               link: http://shortlink_to_slack.com
+
+
+

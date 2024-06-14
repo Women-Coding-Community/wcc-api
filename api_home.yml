@@ -154,8 +154,7 @@ components:
       type: object
       properties:
         title:
-          type: string
-          example: Events
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/Title'
         link:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
         events:

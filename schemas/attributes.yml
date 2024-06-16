@@ -51,9 +51,24 @@ components:
                 "Respect: Treat everyone with respect, dignity, and empathy. Listen and communicate thoughtfully."                
 
       Link:
-        type: string
-        format: uri
-        example: https://www.linkedin.com
+        type: object
+        required:
+          - uri
+          - label
+        additionalProperties: false
+        properties:
+          label:
+            type: string
+            maxLength: 30
+            pattern: '^[A-Za-z\s]+$'
+            example: 'Send us a report on Github'
+          uri:
+            type: string
+            format: uri
+            example: 'https://github.com/Women-Coding-Community/wcc-frontend/issues'
+          title:
+            $ref: '#/components/schemas/attributes/Title'
+            example: Experience Technical Issues?
 
       Links:
         type: array

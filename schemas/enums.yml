@@ -26,3 +26,10 @@ components:
       enum: [ desktop, mobile, tablet ]
       example: desktop
       description: Different sizes of images
+
+    CategoryType:
+      type: string
+      enum:
+        [ Upcoming in person,  Upcoming online meetup ]
+      example: Upcoming in person
+      description: Type of event

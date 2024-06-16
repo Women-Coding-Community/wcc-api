@@ -74,7 +74,7 @@ components:
             type: object
             required:
               - topic
-              - type
+              - category
               - startDate
               - endDate
               - title
@@ -88,9 +88,8 @@ components:
               topic:
                 type: string
                 example: Book Club
-              type:
-                type: string
-                example: upcoming meetup event
+              category:
+                  $ref: 'schemas/enums.yml#/components/schemas/CategoryType'
               startDate:
                 type: string
                 example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST

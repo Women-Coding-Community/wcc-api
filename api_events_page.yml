@@ -52,22 +52,25 @@ components:
         - heroSection
         - pageIntroSection
         - eventSection
+        - filterBY
       additionalProperties: false
       properties:
         heroSection:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/HeroSection'
         pageIntroSection:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
-        eventSection:
-          $ref: '#/components/schemas/EventCard'
+        event:
+          $ref: '#/components/schemas/Event'
+        filterBy:
+          $ref: '#/components/schemas/FilterBy'
 
-    EventCard:
+    Event:
       type: object
       required:
-        - event
+        - items
       additionalProperties: false
       properties:
-        event:
+        items:
           type: array
           maxItems: 4
           items:
@@ -78,7 +81,6 @@ components:
               - startDate
               - endDate
               - title
-              - host
               - speaker
               - description
               - images
@@ -100,9 +102,6 @@ components:
                 type: string
                 example: |
                   Book Club: The Pragmatic Programmer
-              host:
-                type: string
-                example: Sasha Northon and Lana Rey
               speaker:
                 type: string
                 example: John Smith
@@ -120,6 +119,48 @@ components:
                 items:
                   $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
 
+    FilterBy:
+      type: object
+      required:
+       - filterBy
+      additionalProperties: false
+      properties:
+        items:
+         type: array
+         maxItems: 4
+        items:
+          type: object
+          required:
+            - title
+            - category
+            - topics
+            - date
+          properties:
+              title:
+                type: string
+                example: Filter By
+              category:
+                type: array
+                maxitems: 2
+                items:
+                  type: object
+                  required:
+                    $ref: 'schemas/enums.yml#/components/schemas/CategoryType'
+              topics:
+                type: array
+                maxitems: 6
+                items:
+                  type: string
+              date:
+                type: array
+                maxitems: 3
+                items:
+                  type: string
+                  example: 30 days ahead
+                  type: string
+                  example: 30 -60 days ahead
+                  type: string
+                  example: 60 days ahead
 
 
 

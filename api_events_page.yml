@@ -13,6 +13,8 @@ paths:
   /events:
     get:
       summary: Get Events Page contents
+      parameters:
+        -  $ref: 'parameters/filter.yml'
       security:
         - apiKey: [ ]
       responses:
@@ -52,7 +54,6 @@ components:
         - heroSection
         - pageIntroSection
         - eventSection
-        - filterBY
       additionalProperties: false
       properties:
         heroSection:
@@ -61,9 +62,6 @@ components:
           $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
         event:
           $ref: '#/components/schemas/Event'
-        filterBy:
-          $ref: '#/components/schemas/FilterBy'
-
     Event:
       type: object
       required:
@@ -119,48 +117,7 @@ components:
                 items:
                   $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
 
-    FilterBy:
-      type: object
-      required:
-       - filterBy
-      additionalProperties: false
-      properties:
-        items:
-         type: array
-         maxItems: 4
-        items:
-          type: object
-          required:
-            - title
-            - category
-            - topics
-            - date
-          properties:
-              title:
-                type: string
-                example: Filter By
-              category:
-                type: array
-                maxitems: 2
-                items:
-                  type: object
-                  required:
-                    $ref: 'schemas/enums.yml#/components/schemas/CategoryType'
-              topics:
-                type: array
-                maxitems: 6
-                items:
-                  type: string
-              date:
-                type: array
-                maxitems: 3
-                items:
-                  type: string
-                  example: 30 days ahead
-                  type: string
-                  example: 30 -60 days ahead
-                  type: string
-                  example: 60 days ahead
+
 
 
 

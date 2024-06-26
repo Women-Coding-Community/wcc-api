@@ -4,8 +4,8 @@ components:
       SimplePage:
         type: object
         required:
-          - path
-          - type
+          - title
+          - description
         additionalProperties: false
         properties:
           title:

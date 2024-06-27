@@ -1,0 +1,127 @@
+openapi: 3.0.0
+
+info:
+  title: Session "Events Page" APIs
+  description: API to retrieve information about events
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api/cms/v1
+  - url: https://wcc-cms.fly.dev/api/cms/v1
+
+paths:
+  /events:
+    get:
+      summary: Get Events Page contents
+      parameters:
+        -  $ref: 'parameters/filter.yml'
+      security:
+        - apiKey: [ ]
+      responses:
+        '200':
+          description: List of Events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Events'
+
+        '401':
+          $ref: 'schemas/responses.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'schemas/responses.yml#/components/responses/NotFound'
+        '406':
+          $ref: 'schemas/responses.yml#/components/responses/NotAcceptable'
+        '429':
+          $ref: 'schemas/responses.yml#/components/responses/TooManyRequests'
+        '5XX':
+          $ref: 'schemas/responses.yml#/components/responses/UnexpectedError'
+
+        default:
+          $ref: 'schemas/responses.yml#/components/responses/Forbidden'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    Events:
+      type: object
+      required:
+        - heroSection
+        - pageIntroSection
+        - eventSection
+      additionalProperties: false
+      properties:
+        heroSection:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/HeroSection'
+        pageIntroSection:
+          $ref: 'schemas/attributes.yml#/components/schemas/attributes/SimplePage'
+        event:
+          $ref: '#/components/schemas/Event'
+    Event:
+      type: object
+      required:
+        - items
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          maxItems: 4
+          items:
+            type: object
+            required:
+              - topic
+              - category
+              - startDate
+              - endDate
+              - title
+              - speaker
+              - description
+              - images
+              - link
+              - eventResources
+            properties:
+              topic:
+                type: string
+                example: Book Club
+              category:
+                  $ref: 'schemas/enums.yml#/components/schemas/CategoryType'
+              startDate:
+                type: string
+                example: THU, MAY 30, 2024, 8:00 PM to 9:30 PM CEST
+              endDate:
+                type: integer
+                example: 20240517
+              title:
+                type: string
+                example: |
+                  Book Club: The Pragmatic Programmer
+              speaker:
+                type: string
+                example: John Smith
+              description:
+                type: string
+                example: >
+                  Join us for a discussion of this essential guide to writing clear and maintainable code!
+              images:
+                 $ref: 'schemas/attributes.yml#/components/schemas/attributes/Images'
+              link:
+                 $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+              eventResources:
+                type: array
+                maxItems: 4
+                items:
+                  $ref: 'schemas/attributes.yml#/components/schemas/attributes/Link'
+
+
+
+
+
+
+
+
+

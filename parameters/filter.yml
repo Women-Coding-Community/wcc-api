@@ -1,0 +1,8 @@
+name: filter
+in: query
+description: filter the events by categories
+required: false
+schema:
+  type: array
+  items:
+     type: string
